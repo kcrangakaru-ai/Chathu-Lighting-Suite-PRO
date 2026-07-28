@@ -13,8 +13,7 @@ function Plugin.Start()
     Logger.Info("Author  : " .. Config.Author)
     Logger.Info("===================================")
 
-    Scanner.ScanFixtures()
-
+    Scanner.Scan()
     GroupBuilder.Build()
 
     Logger.Info("Plugin Finished")
