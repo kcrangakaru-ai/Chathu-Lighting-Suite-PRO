@@ -1,11 +1,27 @@
-local function Main()
+--==================================================
+-- Chathu Lighting Suite PRO
+-- Main.lua
+-- Version 1.0.0
+--==================================================
 
-    gma.echo("================================")
-    gma.echo("Chathu Lighting Suite PRO")
-    gma.echo("Version 1.0.0")
-    gma.echo("Plugin Loaded Successfully")
-    gma.echo("================================")
+local Config = require("Config")
+local Logger = require("Logger")
+local UI = require("UI")
+
+local Plugin = {}
+
+function Plugin.Start()
+
+    Logger.Info("===================================")
+    Logger.Info(Config.Name)
+    Logger.Info("Version : " .. Config.Version)
+    Logger.Info("Author  : " .. Config.Author)
+    Logger.Info("===================================")
+
+    UI.ShowWelcome()
+
+    Logger.Info("Plugin Started Successfully")
 
 end
 
-return Main
+return Plugin
