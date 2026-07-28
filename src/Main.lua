@@ -1,26 +1,15 @@
 --------------------------------------------------
 -- Chathu Lighting Suite PRO
--- Main.lua
--- Version 1.0.0
+-- First Working Test
 --------------------------------------------------
 
-local Config = require("Config")
-local Logger = require("Logger")
-local UI = require("UI")
+return function()
 
-local Plugin = {}
-
-function Plugin.Start()
-
-    Logger.Info("===================================")
-    Logger.Info(Config.Name)
-    Logger.Info("Version : "..Config.Version)
-    Logger.Info("Author  : "..Config.Author)
-    Logger.Info("===================================")
-
-    UI.ShowWelcome()
-
-    Logger.Info("Plugin Loaded Successfully")
+    gma.echo("================================")
+    gma.echo("Chathu Lighting Suite PRO")
+    gma.echo("Version 1.0")
+    gma.echo("Plugin Loaded Successfully")
+    gma.echo("================================")
 
 end
 
