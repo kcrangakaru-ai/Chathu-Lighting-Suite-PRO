@@ -1,15 +1,23 @@
 local Logger = {}
 
-function Logger.Info(message)
-    gma.echo("[INFO] " .. message)
+function Logger.Info(msg)
+    gma.echo("[INFO] " .. msg)
 end
 
-function Logger.Warning(message)
-    gma.echo("[WARNING] " .. message)
+function Logger.Warning(msg)
+    gma.echo("[WARNING] " .. msg)
 end
 
-function Logger.Error(message)
-    gma.echo("[ERROR] " .. message)
+function Logger.Error(msg)
+    gma.echo("[ERROR] " .. msg)
+end
+
+function Logger.Debug(msg)
+
+    if true then
+        gma.echo("[DEBUG] " .. msg)
+    end
+
 end
 
 return Logger
