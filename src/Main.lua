@@ -11,12 +11,28 @@ return function()
     Logger.Info("Author  : " .. Config.Author)
     Logger.Info("===================================")
 
-    local fixtures = Scanner.Scan()
+    local success, err = pcall(function()
 
-    Logger.Info("Fixtures Found : " .. #fixtures)
+        --------------------------------------------------
+        -- Scan Fixtures
+        --------------------------------------------------
+        local fixtures = Scanner.Scan()
 
-    GroupBuilder.Build()
+        Logger.Info("Fixtures Found : " .. FixtureDatabase.Count())
 
-    Logger.Info("Plugin Finished")
+        --------------------------------------------------
+        -- Build Groups
+        --------------------------------------------------
+        GroupBuilder.Build()
+
+    end)
+
+    if success then
+        Logger.Info("Plugin Finished Successfully")
+    else
+        Logger.Error("Plugin Error : " .. tostring(err))
+    end
+
+    gma.cmd("ClearAll")
 
 end
