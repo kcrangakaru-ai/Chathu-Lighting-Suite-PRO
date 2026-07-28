@@ -1,34 +1,40 @@
 --------------------------------------------------
+-- Chathu Lighting Suite PRO
 -- Scanner
 --------------------------------------------------
 
-FixtureDatabase.Clear()
+local Scanner = {}
 
 function Scanner.Scan()
 
-    local fixtures = {}
+    -- Clear previous scan results
+    FixtureDatabase.Clear()
 
-    for i = 1,500 do
+    Logger.Info("Scanning Fixtures...")
 
-        local h = gma.show.getobj.handle("Fixture "..i)
+    for i = 1, 500 do
+
+        local h = gma.show.getobj.handle("Fixture " .. i)
 
         if h then
 
             FixtureDatabase.Add({
 
-    id = i,
+                id = i,
 
-    name = gma.show.getobj.name(h),
+                name = gma.show.getobj.name(h),
 
-    class = gma.show.getobj.class(h)
+                class = gma.show.getobj.class(h)
 
-}
+            })
 
         end
 
     end
 
-   return FixtureDatabase.GetAll()
+    Logger.Info("Scan Complete")
+
+    return FixtureDatabase.GetAll()
 
 end
 
