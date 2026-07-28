@@ -1,8 +1,24 @@
 local Color = {}
 
-function Color.Apply()
+Color.Presets = {}
 
-    gma.echo("Applying Color...")
+function Color.Clear()
+
+    Color.Presets = {}
+
+end
+
+function Color.Add(name)
+
+    table.insert(Color.Presets,{
+        Name = name
+    })
+
+end
+
+function Color.Count()
+
+    return #Color.Presets
 
 end
 
