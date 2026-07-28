@@ -5,6 +5,8 @@
 
 local Config = {}
 
+Config.Name = "Chathu Lighting Suite PRO"
+Config.Author = "J.A. Chathuranga Karunathilaka"
 Config.Version = "4.0.0"
 
 Config.Groups = {
