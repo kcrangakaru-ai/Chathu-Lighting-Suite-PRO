@@ -43,10 +43,29 @@ with open(output, "w", encoding="utf-8") as out:
 
             for line in text.splitlines():
 
-                if "require(" in line:
-                    continue
+    s = line.strip()
 
-                lines.append(line)
+    # Remove require()
+    if "require(" in s:
+        continue
+
+    # Remove module return statements
+    if s == "return Config":
+        continue
+
+    if s == "return Logger":
+        continue
+
+    if s == "return Scanner":
+        continue
+
+    if s == "return GroupBuilder":
+        continue
+
+    lines.append(line)
+
+out.write("\n".join(lines))
+out.write("\n\n")
 
             out.write("\n".join(lines))
             out.write("\n\n")
