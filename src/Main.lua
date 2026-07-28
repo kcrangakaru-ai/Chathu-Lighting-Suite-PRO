@@ -1,15 +1,23 @@
 --------------------------------------------------
 -- Chathu Lighting Suite PRO
--- First Working Test
+-- Main.lua
 --------------------------------------------------
 
-return function()
+local Plugin = {}
 
-    gma.echo("================================")
-    gma.echo("Chathu Lighting Suite PRO")
-    gma.echo("Version 1.0")
-    gma.echo("Plugin Loaded Successfully")
-    gma.echo("================================")
+function Plugin.Start()
+
+    Logger.Info("===================================")
+    Logger.Info(Config.Name)
+    Logger.Info("Version : " .. Config.Version)
+    Logger.Info("Author  : " .. Config.Author)
+    Logger.Info("===================================")
+
+    Scanner.ScanFixtures()
+
+    GroupBuilder.Build()
+
+    Logger.Info("Plugin Finished")
 
 end
 
