@@ -1,8 +1,25 @@
 local Presets = {}
 
-function Presets.Generate()
+Presets.List = {}
 
-    gma.echo("Generating Presets...")
+function Presets.Clear()
+
+    Presets.List = {}
+
+end
+
+function Presets.Add(category, name)
+
+    table.insert(Presets.List,{
+        Category = category,
+        Name = name
+    })
+
+end
+
+function Presets.Count()
+
+    return #Presets.List
 
 end
 
