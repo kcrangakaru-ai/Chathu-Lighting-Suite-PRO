@@ -1,22 +1,47 @@
 from pathlib import Path
 
+project = Path(__file__).resolve().parent.parent
+src = project / "src"
+release = project / "release"
+
+output = release / "ChathuLightingSuite.lua"
+
+order = [
+    "Config.lua",
+    "Logger.lua",
+    "Scanner.lua",
+    "GroupBuilder.lua",
+    "Main.lua"
+]
+
 print("=" * 40)
-print("Chathu Lighting Suite PRO Builder")
+print("Building Chathu Lighting Suite PRO")
 print("=" * 40)
 
-project_root = Path(__file__).resolve().parent.parent
-src_dir = project_root / "src"
-release_dir = project_root / "release"
+with open(output, "w", encoding="utf-8") as out:
 
-print("Project :", project_root)
-print("Source  :", src_dir)
-print("Release :", release_dir)
+    out.write("-- Auto Generated File\n")
+    out.write("-- DO NOT EDIT\n\n")
 
-lua_files = sorted(src_dir.glob("*.lua"))
+    for name in order:
 
-print("\nLua Files Found:")
+        file = src / name
 
-for f in lua_files:
-    print(" -", f.name)
+        if file.exists():
 
-print("\nBuild system ready.")
+            print("Adding", name)
+
+            out.write("\n")
+            out.write("--====================\n")
+            out.write("-- " + name + "\n")
+            out.write("--====================\n\n")
+
+            out.write(file.read_text(encoding="utf-8"))
+            out.write("\n\n")
+
+        else:
+
+            print("Missing:", name)
+
+print("\nBuild Finished!")
+print(output)
