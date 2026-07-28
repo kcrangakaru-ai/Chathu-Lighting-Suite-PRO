@@ -36,20 +36,20 @@ with open(output, "w", encoding="utf-8") as out:
             out.write("-- " + name + "\n")
             out.write("--====================\n\n")
 
-text = file.read_text(encoding="utf-8")
+            text = file.read_text(encoding="utf-8")
 
-# Remove require() lines
-lines = []
+            # Remove require() lines
+            lines = []
 
-for line in text.splitlines():
+            for line in text.splitlines():
 
-    if "require(" in line:
-        continue
+                if "require(" in line:
+                    continue
 
-    lines.append(line)
+                lines.append(line)
 
-out.write("\n".join(lines))
-out.write("\n\n")
+            out.write("\n".join(lines))
+            out.write("\n\n")
 
         else:
 
