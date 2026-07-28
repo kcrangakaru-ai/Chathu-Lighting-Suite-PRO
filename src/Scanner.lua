@@ -2,7 +2,7 @@
 -- Scanner
 --------------------------------------------------
 
-local Scanner = {}
+FixtureDatabase.Clear()
 
 function Scanner.Scan()
 
@@ -14,17 +14,21 @@ function Scanner.Scan()
 
         if h then
 
-            fixtures[#fixtures+1] = {
-                id = i,
-                name = gma.show.getobj.name(h),
-                class = gma.show.getobj.class(h)
-            }
+            FixtureDatabase.Add({
+
+    id = i,
+
+    name = gma.show.getobj.name(h),
+
+    class = gma.show.getobj.class(h)
+
+}
 
         end
 
     end
 
-    return fixtures
+   return FixtureDatabase.GetAll()
 
 end
 
