@@ -2,9 +2,10 @@ local UI = {}
 
 function UI.ShowWelcome()
 
-    gma.echo("==============================")
+    gma.echo("-----------------------------------")
     gma.echo(" Chathu Lighting Suite PRO ")
-    gma.echo("==============================")
+    gma.echo(" Ready...")
+    gma.echo("-----------------------------------")
 
 end
 
