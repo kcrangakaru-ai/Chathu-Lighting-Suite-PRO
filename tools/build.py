@@ -17,8 +17,18 @@ output = release / "ChathuLightingSuite.lua"
 order = [
     "Config.lua",
     "Logger.lua",
+    "FixtureDatabase.lua",
     "Scanner.lua",
     "GroupBuilder.lua",
+    "Groups.lua",
+    "Fixtures.lua",
+    "Position.lua",
+    "Color.lua",
+    "Beam.lua",
+    "Effects.lua",
+    "Busking.lua",
+    "Presets.lua",
+    "UI.lua",
     "Main.lua"
 ]
 
@@ -59,17 +69,25 @@ with open(output, "w", encoding="utf-8") as out:
                 continue
 
             # Remove module return statements
-            if s == "return Config":
-                continue
+            module_returns = {
+    "return Config",
+    "return Logger",
+    "return FixtureDatabase",
+    "return Scanner",
+    "return GroupBuilder",
+    "return Groups",
+    "return Fixtures",
+    "return Position",
+    "return Color",
+    "return Beam",
+    "return Effects",
+    "return Busking",
+    "return Presets",
+    "return UI"
+}
 
-            if s == "return Logger":
-                continue
-
-            if s == "return Scanner":
-                continue
-
-            if s == "return GroupBuilder":
-                continue
+if s in module_returns:
+    continue
 
             lines.append(line)
 
