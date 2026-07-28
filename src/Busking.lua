@@ -1,8 +1,24 @@
 local Busking = {}
 
-function Busking.Start()
+Busking.Pages = {}
 
-    gma.echo("Starting Busking Mode...")
+function Busking.Clear()
+
+    Busking.Pages = {}
+
+end
+
+function Busking.Add(name)
+
+    table.insert(Busking.Pages,{
+        Name = name
+    })
+
+end
+
+function Busking.Count()
+
+    return #Busking.Pages
 
 end
 
