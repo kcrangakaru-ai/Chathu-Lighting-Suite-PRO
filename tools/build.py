@@ -17,6 +17,7 @@ output = release / "ChathuLightingSuite.lua"
 order = [
     "Config.lua",
     "Logger.lua",
+    "Utils.lua",
     "FixtureDatabase.lua",
     "Scanner.lua",
     "GroupBuilder.lua",
