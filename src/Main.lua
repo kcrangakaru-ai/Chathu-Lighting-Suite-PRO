@@ -1,8 +1,8 @@
---==================================================
+--------------------------------------------------
 -- Chathu Lighting Suite PRO
 -- Main.lua
 -- Version 1.0.0
---==================================================
+--------------------------------------------------
 
 local Config = require("Config")
 local Logger = require("Logger")
@@ -14,13 +14,13 @@ function Plugin.Start()
 
     Logger.Info("===================================")
     Logger.Info(Config.Name)
-    Logger.Info("Version : " .. Config.Version)
-    Logger.Info("Author  : " .. Config.Author)
+    Logger.Info("Version : "..Config.Version)
+    Logger.Info("Author  : "..Config.Author)
     Logger.Info("===================================")
 
     UI.ShowWelcome()
 
-    Logger.Info("Plugin Started Successfully")
+    Logger.Info("Plugin Loaded Successfully")
 
 end
 
