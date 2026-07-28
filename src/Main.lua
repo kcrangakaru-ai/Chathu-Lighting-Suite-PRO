@@ -1,11 +1,9 @@
 --------------------------------------------------
 -- Chathu Lighting Suite PRO
--- Main.lua
+-- Main
 --------------------------------------------------
 
-local Plugin = {}
-
-function Plugin.Start()
+return function()
 
     Logger.Info("===================================")
     Logger.Info(Config.Name)
@@ -13,11 +11,12 @@ function Plugin.Start()
     Logger.Info("Author  : " .. Config.Author)
     Logger.Info("===================================")
 
-    Scanner.Scan()
+    local fixtures = Scanner.Scan()
+
+    Logger.Info("Fixtures Found : " .. #fixtures)
+
     GroupBuilder.Build()
 
     Logger.Info("Plugin Finished")
 
 end
-
-return Plugin
