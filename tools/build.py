@@ -1,11 +1,19 @@
 from pathlib import Path
 
+# -----------------------------
+# Project Paths
+# -----------------------------
 project = Path(__file__).resolve().parent.parent
 src = project / "src"
 release = project / "release"
 
+release.mkdir(exist_ok=True)
+
 output = release / "ChathuLightingSuite.lua"
 
+# -----------------------------
+# Build Order
+# -----------------------------
 order = [
     "Config.lua",
     "Logger.lua",
@@ -27,52 +35,49 @@ with open(output, "w", encoding="utf-8") as out:
 
         file = src / name
 
-        if file.exists():
-
-            print("Adding", name)
-
-            out.write("\n")
-            out.write("--====================\n")
-            out.write("-- " + name + "\n")
-            out.write("--====================\n\n")
-
-            text = file.read_text(encoding="utf-8")
-
-            # Remove require() lines
-            lines = []
-
-            for line in text.splitlines():
-
-    s = line.strip()
-
-    # Remove require()
-    if "require(" in s:
-        continue
-
-    # Remove module return statements
-    if s == "return Config":
-        continue
-
-    if s == "return Logger":
-        continue
-
-    if s == "return Scanner":
-        continue
-
-    if s == "return GroupBuilder":
-        continue
-
-    lines.append(line)
-
-out.write("\n".join(lines))
-out.write("\n\n")
-
-            out.write("\n".join(lines))
-            out.write("\n\n")
-
-        else:
-
+        if not file.exists():
             print("Missing:", name)
+            continue
 
-print("\nBuild Finished!")
+        print("Adding", name)
+
+        out.write("\n")
+        out.write("--====================\n")
+        out.write("-- " + name + "\n")
+        out.write("--====================\n\n")
+
+        text = file.read_text(encoding="utf-8")
+
+        lines = []
+
+        for line in text.splitlines():
+
+            s = line.strip()
+
+            # Remove require()
+            if "require(" in s:
+                continue
+
+            # Remove module return statements
+            if s == "return Config":
+                continue
+
+            if s == "return Logger":
+                continue
+
+            if s == "return Scanner":
+                continue
+
+            if s == "return GroupBuilder":
+                continue
+
+            lines.append(line)
+
+        out.write("\n".join(lines))
+        out.write("\n\n")
+
+print()
+print("=" * 40)
+print("Build Finished!")
+print("=" * 40)
 print(output)
