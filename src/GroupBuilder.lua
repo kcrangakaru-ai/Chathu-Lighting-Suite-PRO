@@ -31,15 +31,15 @@ function GroupBuilder.Build()
 
         local name = string.upper(fixture.name or "")
 
-        if string.find(name, "350") then
+        if Utils.MatchKeywords(name, Config.Keywords.Beam350) then
 
-            table.insert(beam350, tostring(fixture.id))
+    table.insert(beam350, tostring(fixture.id))
 
-        elseif string.find(name, "WASH") then
+elseif Utils.MatchKeywords(name, Config.Keywords.Wash) then
 
-            table.insert(wash, tostring(fixture.id))
+    table.insert(wash, tostring(fixture.id))
 
-        end
+end
 
     end
 
