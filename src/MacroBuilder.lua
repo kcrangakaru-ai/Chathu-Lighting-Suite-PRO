@@ -13,51 +13,39 @@ function MacroBuilder.Build()
 
     Logger.Info("Building Macros...")
 
-    --------------------------------------------------
-    -- Future Macro Creation
-    --------------------------------------------------
+    if not Config.Macros then
+        Logger.Warn("No macros configured.")
+        return
+    end
 
-    -- Store Macro
-    -- Label Macro
-    -- Add Macro Lines
+    for _, macro in ipairs(Config.Macros) do
 
-    Logger.Success("Macro Builder Complete")
+        Command.StoreMacro(macro.Number)
 
-end
+        Command.LabelMacro(
+            macro.Number,
+            macro.Name
+        )
 
---------------------------------------------------
--- Return Module
---------------------------------------------------
+        for lineNumber, cmd in ipairs(macro.Lines) do
 
-return MacroBuilder--------------------------------------------------
--- Chathu Lighting Suite PRO
--- Macro Builder
---------------------------------------------------
+            Command.InsertMacroLine(
+                macro.Number,
+                lineNumber,
+                cmd
+            )
 
-local MacroBuilder = {}
+        end
 
---------------------------------------------------
--- Build Macros
---------------------------------------------------
+        Logger.Success(
+            "Macro Created : " ..
+            macro.Name
+        )
 
-function MacroBuilder.Build()
-
-    Logger.Info("Building Macros...")
-
-    --------------------------------------------------
-    -- Future Macro Creation
-    --------------------------------------------------
-
-    -- Store Macro
-    -- Label Macro
-    -- Add Macro Lines
+    end
 
     Logger.Success("Macro Builder Complete")
 
 end
-
---------------------------------------------------
--- Return Module
---------------------------------------------------
 
 return MacroBuilder
