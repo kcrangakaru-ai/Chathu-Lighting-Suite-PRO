@@ -153,4 +153,52 @@ Config.DefaultEffects = {
 -- Return Module
 --------------------------------------------------
 
+--------------------------------------------------
+-- Default Macros
+--------------------------------------------------
+
+Config.Macros = {
+
+    {
+        Number = 101,
+        Name = "Clear Programmer",
+        Lines = {
+            "ClearAll"
+        }
+    },
+
+    {
+        Number = 102,
+        Name = "Highlight ON",
+        Lines = {
+            "Highlight"
+        }
+    },
+
+    {
+        Number = 103,
+        Name = "Highlight OFF",
+        Lines = {
+            "Highlight Off"
+        }
+    },
+
+    {
+        Number = 104,
+        Name = "Blind ON",
+        Lines = {
+            "Blind"
+        }
+    },
+
+    {
+        Number = 105,
+        Name = "Blind OFF",
+        Lines = {
+            "Blind Off"
+        }
+    }
+
+}
+
 return Config
