@@ -201,4 +201,33 @@ Config.Macros = {
 
 }
 
+--------------------------------------------------
+-- Executor Configuration
+--------------------------------------------------
+
+Config.Executors = {
+
+    {
+        Number = "1.201",
+        Type = "Group",
+        Object = 900,
+        Label = "ALL"
+    },
+
+    {
+        Number = "1.202",
+        Type = "Group",
+        Object = 901,
+        Label = "350 BEAM"
+    },
+
+    {
+        Number = "1.203",
+        Type = "Group",
+        Object = 902,
+        Label = "WASH"
+    }
+
+}
+
 return Config
