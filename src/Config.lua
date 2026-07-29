@@ -137,8 +137,4 @@ Config.DefaultEffects = {
 }
 
 return Config
-    GrandMA3 = false
-
-}
-
-return Config
+  
