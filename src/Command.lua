@@ -67,6 +67,44 @@ function Command.LabelPreset(pool, number, name)
 end
 
 --------------------------------------------------
+-- Store Macro
+--------------------------------------------------
+
+function Command.StoreMacro(number)
+
+    Command.Run("Store Macro " .. number .. " /o")
+
+end
+
+--------------------------------------------------
+-- Label Macro
+--------------------------------------------------
+
+function Command.LabelMacro(number, name)
+
+    Command.Run('Label Macro ' .. number .. ' "' .. name .. '"')
+
+end
+
+--------------------------------------------------
+-- Insert Macro Line
+--------------------------------------------------
+
+function Command.InsertMacroLine(number, line, command)
+
+    Command.Run(
+        'Assign Macro ' ..
+        number ..
+        '.' ..
+        line ..
+        ' /cmd="' ..
+        command ..
+        '"'
+    )
+
+end
+
+--------------------------------------------------
 -- Select Fixtures
 --------------------------------------------------
 
