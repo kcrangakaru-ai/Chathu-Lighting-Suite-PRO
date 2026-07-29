@@ -1,86 +1,62 @@
 --------------------------------------------------
 -- Chathu Lighting Suite PRO
--- Color
+-- Color Engine
 --------------------------------------------------
 
 local Color = {}
 
-Color.Presets = {}
-
 --------------------------------------------------
--- Clear Colors
+-- Store Single Color Preset
 --------------------------------------------------
 
-function Color.Clear()
+function Color.Store(number, name)
 
-    Color.Presets = {}
+    local pool = Config.PresetPools.Color
+
+    Logger.Info("Creating Color Preset : " .. name)
+
+    Command.StorePreset(pool, number)
+
+    Command.LabelPreset(
+        pool,
+        number,
+        name
+    )
 
 end
 
 --------------------------------------------------
--- Add Color
+-- Build Default Color Presets
 --------------------------------------------------
 
-function Color.Add(name)
+function Color.Build()
 
-    table.insert(Color.Presets, {
-        Name = name or ""
-    })
+    Logger.Info("Building Color Presets...")
 
-end
-
---------------------------------------------------
--- Get All Colors
---------------------------------------------------
-
-function Color.GetAll()
-
-    return Color.Presets
-
-end
-
---------------------------------------------------
--- Count Colors
---------------------------------------------------
-
-function Color.Count()
-
-    return #Color.Presets
-
-end
-
---------------------------------------------------
--- Default Colors
---------------------------------------------------
-
-Color.Default = {
-    White   = "White",
-    Red     = "Red",
-    Green   = "Green",
-    Blue    = "Blue",
-    Cyan    = "Cyan",
-    Magenta = "Magenta",
-    Yellow  = "Yellow",
-    Amber   = "Amber",
-    UV      = "UV",
-    CTO     = "CTO",
-    CTB     = "CTB"
-}
-
---------------------------------------------------
--- Load Default Colors
---------------------------------------------------
-
-function Color.LoadDefaults()
-
-    Color.Clear()
-
-    for _, name in pairs(Color.Default) do
-        Color.Add(name)
+    if not Config.ColorPresets then
+        Logger.Warn("No Color Presets configured.")
+        return
     end
 
-    Logger.Info("Loaded " .. Color.Count() .. " default colors.")
+    for _, preset in ipairs(Config.ColorPresets) do
+
+        Color.Store(
+            preset.Number,
+            preset.Name
+        )
+
+    end
+
+    Logger.Success(
+        "Color Presets Complete (" ..
+        #Config.ColorPresets ..
+        " presets)"
+    )
 
 end
+
+--------------------------------------------------
+-- Return Module
+--------------------------------------------------
 
 return Color
