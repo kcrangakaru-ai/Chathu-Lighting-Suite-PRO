@@ -15,15 +15,20 @@ order = [
     "Fixtures.lua",
     "Position.lua",
     "Color.lua",
-    "ShowBuilder.lua",
     "Beam.lua",
     "Effects.lua",
     "Busking.lua",
     "Presets.lua",
+
+    "MacroBuilder.lua",
+    "ExecutorBuilder.lua",
+    "PageBuilder.lua",
+    "LayoutBuilder.lua",
+
     "UI.lua",
+    "ShowBuilder.lua",
     "Main.lua"
 ]
-
 module_returns = {
     "Config.lua",
     "Logger.lua",
