@@ -21,6 +21,19 @@ return function()
         --------------------------------------------------
         GroupBuilder.Build()
 
+        --------------------------------------------------
+        -- Build Position Presets
+        --------------------------------------------------
+        Position.Build()
+
+        --------------------------------------------------
+        -- Future Modules
+        --------------------------------------------------
+        -- Color.Build()
+        -- Beam.Build()
+        -- Focus.Build()
+        -- Effects.Build()
+
     end)
 
     --------------------------------------------------
@@ -37,6 +50,8 @@ return function()
     -- Cleanup
     --------------------------------------------------
 
-    gma.cmd("ClearAll")
+    if Config.AutoClear then
+        gma.cmd("ClearAll")
+    end
 
 end
