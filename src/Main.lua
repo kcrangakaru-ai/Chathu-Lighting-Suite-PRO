@@ -9,41 +9,9 @@ return function()
 
     local success, err = pcall(function()
 
-        --------------------------------------------------
-        -- Scan Fixtures
-        --------------------------------------------------
-        Scanner.Scan()
-
-        Logger.Info("Fixtures Found : " .. FixtureDatabase.Count())
-
-        --------------------------------------------------
-        -- Build Groups
-        --------------------------------------------------
-        GroupBuilder.Build()
-
-        --------------------------------------------------
-        -- Build Position Presets
-        --------------------------------------------------
-        Position.Build()
-
-        --------------------------------------------------
-        -- Build Color Presets
-        --------------------------------------------------
-        Color.Build()
-
-        --------------------------------------------------
-        -- Future Modules
-        --------------------------------------------------
-        -- Color.Build()
-        -- Beam.Build()
-        -- Focus.Build()
-        -- Effects.Build()
+        ShowBuilder.Build()
 
     end)
-
-    --------------------------------------------------
-    -- Result
-    --------------------------------------------------
 
     if success then
         Logger.Success("Plugin Finished Successfully")
@@ -51,12 +19,8 @@ return function()
         Logger.Error("Plugin Error : " .. tostring(err))
     end
 
-    --------------------------------------------------
-    -- Cleanup
-    --------------------------------------------------
-
     if Config.AutoClear then
-        gma.cmd("ClearAll")
+        Command.Clear()
     end
 
 end
