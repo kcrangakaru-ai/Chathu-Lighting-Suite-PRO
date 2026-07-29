@@ -1,8 +1,13 @@
 --------------------------------------------------
+-- Chathu Lighting Suite PRO
 -- Group Builder
 --------------------------------------------------
 
 local GroupBuilder = {}
+
+--------------------------------------------------
+-- Build Groups
+--------------------------------------------------
 
 function GroupBuilder.Build()
 
@@ -18,15 +23,22 @@ function GroupBuilder.Build()
     local beam350 = {}
     local wash = {}
 
+    --------------------------------------------------
+    -- Sort Fixtures
+    --------------------------------------------------
+
     for _, fixture in ipairs(fixtures) do
 
         local name = string.upper(fixture.name or "")
 
         if string.find(name, "350") then
+
             table.insert(beam350, tostring(fixture.id))
 
         elseif string.find(name, "WASH") then
+
             table.insert(wash, tostring(fixture.id))
+
         end
 
     end
@@ -34,36 +46,68 @@ function GroupBuilder.Build()
     --------------------------------------------------
     -- Beam 350 Group
     --------------------------------------------------
+
     if #beam350 > 0 then
 
-        gma.cmd("ClearAll")
-        gma.cmd("Fixture " .. table.concat(beam350, " + "))
-        gma.cmd("Store Group " .. Config.Groups.Beam350 .. " /o")
-        gma.cmd('Label Group ' .. Config.Groups.Beam350 .. ' "350 BEAM"')
+        Command.Clear()
 
-        Logger.Info("350 Beam Group Created (" .. #beam350 .. " fixtures)")
+        Command.SelectFixtures(beam350)
+
+        Command.StoreGroup(Config.Groups.Beam350)
+
+        Command.LabelGroup(
+            Config.Groups.Beam350,
+            "350 BEAM"
+        )
+
+        Logger.Success(
+            "350 Beam Group Created (" ..
+            #beam350 ..
+            " fixtures)"
+        )
+
     else
+
         Logger.Warn("No 350 Beam fixtures found.")
+
     end
 
     --------------------------------------------------
     -- Wash Group
     --------------------------------------------------
+
     if #wash > 0 then
 
-        gma.cmd("ClearAll")
-        gma.cmd("Fixture " .. table.concat(wash, " + "))
-        gma.cmd("Store Group " .. Config.Groups.Wash .. " /o")
-        gma.cmd('Label Group ' .. Config.Groups.Wash .. ' "WASH"')
+        Command.Clear()
 
-        Logger.Info("Wash Group Created (" .. #wash .. " fixtures)")
+        Command.SelectFixtures(wash)
+
+        Command.StoreGroup(Config.Groups.Wash)
+
+        Command.LabelGroup(
+            Config.Groups.Wash,
+            "WASH"
+        )
+
+        Logger.Success(
+            "Wash Group Created (" ..
+            #wash ..
+            " fixtures)"
+        )
+
     else
+
         Logger.Warn("No Wash fixtures found.")
+
     end
 
-    gma.cmd("ClearAll")
+    --------------------------------------------------
+    -- Cleanup
+    --------------------------------------------------
 
-    Logger.Info("Group Builder Finished")
+    Command.Clear()
+
+    Logger.Success("Group Builder Finished")
 
 end
 
