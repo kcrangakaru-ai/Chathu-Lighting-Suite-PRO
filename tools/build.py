@@ -22,6 +22,7 @@ order = [
 
     "MacroBuilder.lua",
     "ExecutorBuilder.lua",
+    "SequenceBuilder.lua",
     "PageBuilder.lua",
     "LayoutBuilder.lua",
 
@@ -29,6 +30,7 @@ order = [
     "ShowBuilder.lua",
     "Main.lua"
 ]
+
 module_returns = {
     "Config.lua",
     "Logger.lua",
@@ -48,6 +50,7 @@ module_returns = {
 
     "MacroBuilder.lua",
     "ExecutorBuilder.lua",
+    "SequenceBuilder.lua",
     "PageBuilder.lua",
     "LayoutBuilder.lua",
 
@@ -83,11 +86,9 @@ with open(OUTPUT_FILE, "w", encoding="utf-8") as out:
 
                 stripped = line.strip()
 
-                # Remove require() lines
                 if stripped.startswith("require"):
                     continue
 
-                # Remove module return
                 if filename in module_returns and stripped.startswith("return "):
                     continue
 
