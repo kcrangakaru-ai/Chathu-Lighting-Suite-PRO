@@ -230,4 +230,54 @@ Config.Executors = {
 
 }
 
+--------------------------------------------------
+-- Default Sequences
+--------------------------------------------------
+
+Config.Sequences = {
+
+    {
+        Number = 1,
+        Name = "ALL ON",
+
+        Executor = "1.201",
+
+        Cues = {
+            {
+                Number = 1,
+                Name = "FULL"
+            }
+        }
+    },
+
+    {
+        Number = 2,
+        Name = "350 BEAM",
+
+        Executor = "1.202",
+
+        Cues = {
+            {
+                Number = 1,
+                Name = "FULL"
+            }
+        }
+    },
+
+    {
+        Number = 3,
+        Name = "WASH",
+
+        Executor = "1.203",
+
+        Cues = {
+            {
+                Number = 1,
+                Name = "FULL"
+            }
+        }
+    }
+
+}
+
 return Config
