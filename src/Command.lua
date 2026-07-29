@@ -251,6 +251,36 @@ function Command.LabelExecutor(executor,name)
 end
 
 --------------------------------------------------
+-- Store Page
+--------------------------------------------------
+
+function Command.StorePage(number)
+
+    Command.Run(
+        "Store Page " ..
+        number ..
+        " /o"
+    )
+
+end
+
+--------------------------------------------------
+-- Label Page
+--------------------------------------------------
+
+function Command.LabelPage(number,name)
+
+    Command.Run(
+        'Label Page ' ..
+        number ..
+        ' "' ..
+        name ..
+        '"'
+    )
+
+end
+
+--------------------------------------------------
 -- Return Module
 --------------------------------------------------
 
