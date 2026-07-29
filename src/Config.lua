@@ -318,4 +318,27 @@ Config.Pages = {
 
 }
 
+--------------------------------------------------
+-- Layouts
+--------------------------------------------------
+
+Config.Layouts = {
+
+    {
+        Number = 1,
+        Name = "Main Busking"
+    },
+
+    {
+        Number = 2,
+        Name = "Color Picker"
+    },
+
+    {
+        Number = 3,
+        Name = "Effects"
+    }
+
+}
+
 return Config
