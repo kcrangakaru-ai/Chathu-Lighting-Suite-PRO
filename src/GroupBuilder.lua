@@ -1,103 +1,101 @@
 --------------------------------------------------
 -- Chathu Lighting Suite PRO
--- Group Builder
+-- Dynamic Group Builder
 --------------------------------------------------
 
 local GroupBuilder = {}
 
 --------------------------------------------------
--- Build Groups
+-- Build All Groups
 --------------------------------------------------
 
 function GroupBuilder.Build()
 
-    Logger.Info("Building Groups...")
+    Logger.Info("Building Fixture Groups...")
 
     local fixtures = FixtureDatabase.GetAll()
 
     if #fixtures == 0 then
-        Logger.Warn("No fixtures found in FixtureDatabase.")
+        Logger.Warn("No fixtures found.")
         return
     end
 
-    local beam350 = {}
-    local wash = {}
+    --------------------------------------------------
+    -- Create ALL FIXTURES Group
+    --------------------------------------------------
 
-    --------------------------------------------------
-    -- Sort Fixtures
-    --------------------------------------------------
+    local allFixtures = {}
 
     for _, fixture in ipairs(fixtures) do
+        table.insert(allFixtures, tostring(fixture.id))
+    end
 
-        local name = string.upper(fixture.name or "")
+    if #allFixtures > 0 then
 
-        if Utils.MatchKeywords(name, Config.Keywords.Beam350) then
+        Command.Clear()
+        Command.SelectFixtures(allFixtures)
 
-    table.insert(beam350, tostring(fixture.id))
+        Command.StoreGroup(Config.FixtureTypes[1].Group)
+        Command.LabelGroup(
+            Config.FixtureTypes[1].Group,
+            Config.FixtureTypes[1].Label
+        )
 
-elseif Utils.MatchKeywords(name, Config.Keywords.Wash) then
-
-    table.insert(wash, tostring(fixture.id))
-
-end
+        Logger.Success("ALL FIXTURES Group Created")
 
     end
 
     --------------------------------------------------
-    -- Beam 350 Group
+    -- Build Dynamic Groups
     --------------------------------------------------
 
-    if #beam350 > 0 then
+    for index, fixtureType in ipairs(Config.FixtureTypes) do
 
-        Command.Clear()
+        -- Skip ALL group
+        if index > 1 then
 
-        Command.SelectFixtures(beam350)
+            local list = {}
 
-        Command.StoreGroup(Config.Groups.Beam350)
+            for _, fixture in ipairs(fixtures) do
 
-        Command.LabelGroup(
-            Config.Groups.Beam350,
-            "350 BEAM"
-        )
+                local name = string.upper(fixture.name or "")
 
-        Logger.Success(
-            "350 Beam Group Created (" ..
-            #beam350 ..
-            " fixtures)"
-        )
+                if Utils.MatchKeywords(name, fixtureType.Keywords) then
+                    table.insert(list, tostring(fixture.id))
+                end
 
-    else
+            end
 
-        Logger.Warn("No 350 Beam fixtures found.")
+            if #list > 0 then
 
-    end
+                Command.Clear()
 
-    --------------------------------------------------
-    -- Wash Group
-    --------------------------------------------------
+                Command.SelectFixtures(list)
 
-    if #wash > 0 then
+                Command.StoreGroup(fixtureType.Group)
 
-        Command.Clear()
+                Command.LabelGroup(
+                    fixtureType.Group,
+                    fixtureType.Label
+                )
 
-        Command.SelectFixtures(wash)
+                Logger.Success(
+                    fixtureType.Label ..
+                    " Group Created (" ..
+                    #list ..
+                    " Fixtures)"
+                )
 
-        Command.StoreGroup(Config.Groups.Wash)
+            else
 
-        Command.LabelGroup(
-            Config.Groups.Wash,
-            "WASH"
-        )
+                Logger.Warn(
+                    fixtureType.Label ..
+                    " Fixtures Not Found"
+                )
 
-        Logger.Success(
-            "Wash Group Created (" ..
-            #wash ..
-            " fixtures)"
-        )
+            end
 
-    else
-
-        Logger.Warn("No Wash fixtures found.")
+        end
 
     end
 
@@ -107,7 +105,7 @@ end
 
     Command.Clear()
 
-    Logger.Success("Group Builder Finished")
+    Logger.Success("Dynamic Group Builder Finished")
 
 end
 
