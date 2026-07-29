@@ -1,22 +1,12 @@
-from pathlib import Path
+import os
 
-# -----------------------------
-# Project Paths
-# -----------------------------
-project = Path(__file__).resolve().parent.parent
-src = project / "src"
-release = project / "release"
+SRC_DIR = "src"
+OUTPUT_FILE = "dist/Main.lua"
 
-release.mkdir(exist_ok=True)
-
-output = release / "ChathuLightingSuite.lua"
-
-# -----------------------------
-# Build Order
-# -----------------------------
 order = [
     "Config.lua",
     "Logger.lua",
+    "Command.lua",
     "Utils.lua",
     "FixtureDatabase.lua",
     "Scanner.lua",
@@ -33,73 +23,61 @@ order = [
     "Main.lua"
 ]
 
-# -----------------------------
-# Module Returns To Remove
-# -----------------------------
 module_returns = {
-    "return Config",
-    "return Logger",
-    "return FixtureDatabase",
-    "return Scanner",
-    "return GroupBuilder",
-    "return Groups",
-    "return Fixtures",
-    "return Position",
-    "return Color",
-    "return Beam",
-    "return Effects",
-    "return Busking",
-    "return Presets",
-    "return UI"
+    "Config.lua",
+    "Logger.lua",
+    "Command.lua",
+    "Utils.lua",
+    "FixtureDatabase.lua",
+    "Scanner.lua",
+    "GroupBuilder.lua",
+    "Groups.lua",
+    "Fixtures.lua",
+    "Position.lua",
+    "Color.lua",
+    "Beam.lua",
+    "Effects.lua",
+    "Busking.lua",
+    "Presets.lua",
+    "UI.lua",
 }
 
-print("=" * 40)
-print("Building Chathu Lighting Suite PRO")
-print("=" * 40)
+os.makedirs("dist", exist_ok=True)
 
-with open(output, "w", encoding="utf-8") as out:
+with open(OUTPUT_FILE, "w", encoding="utf-8") as out:
 
-    out.write("-- Auto Generated File\n")
-    out.write("-- DO NOT EDIT\n\n")
+    out.write("-- ======================================\n")
+    out.write("-- Chathu Lighting Suite PRO\n")
+    out.write("-- Auto Generated Build\n")
+    out.write("-- ======================================\n\n")
 
-    for name in order:
+    for filename in order:
 
-        file = src / name
+        filepath = os.path.join(SRC_DIR, filename)
 
-        if not file.exists():
-            print(f"Missing: {name}")
+        if not os.path.exists(filepath):
+            print(f"⚠ Missing: {filename}")
             continue
 
-        print(f"Adding {name}")
-
         out.write("\n")
-        out.write("--====================\n")
-        out.write(f"-- {name}\n")
-        out.write("--====================\n\n")
+        out.write("-- ======================================\n")
+        out.write(f"-- {filename}\n")
+        out.write("-- ======================================\n\n")
 
-        text = file.read_text(encoding="utf-8")
+        with open(filepath, "r", encoding="utf-8") as f:
 
-        lines = []
+            for line in f:
 
-        for line in text.splitlines():
+                stripped = line.strip()
 
-            s = line.strip()
+                # Remove require() lines
+                if stripped.startswith("require"):
+                    continue
 
-            # Remove require() statements
-            if "require(" in s:
-                continue
+                # Remove module return
+                if filename in module_returns and stripped.startswith("return "):
+                    continue
 
-            # Remove module return statements
-            if s in module_returns:
-                continue
+                out.write(line)
 
-            lines.append(line)
-
-        out.write("\n".join(lines))
-        out.write("\n\n")
-
-print()
-print("=" * 40)
-print("Build Finished!")
-print("=" * 40)
-print(output)
+print(f"\n✅ Build Complete: {OUTPUT_FILE}")
