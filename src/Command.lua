@@ -118,4 +118,35 @@ end
 -- Return Module
 --------------------------------------------------
 
+--------------------------------------------------
+-- Assign Executor
+--------------------------------------------------
+
+function Command.AssignExecutor(executor, object)
+
+    Command.Run(
+        "Assign Group " ..
+        object ..
+        " At Executor " ..
+        executor
+    )
+
+end
+
+--------------------------------------------------
+-- Label Executor
+--------------------------------------------------
+
+function Command.LabelExecutor(executor, name)
+
+    Command.Run(
+        'Label Executor ' ..
+        executor ..
+        ' "' ..
+        name ..
+        '"'
+    )
+
+end
+
 return Command
