@@ -11,7 +11,7 @@ local Config = {}
 
 Config.Name = "Chathu Lighting Suite PRO"
 Config.Author = "J.A. Chathuranga Karunathilaka"
-Config.Version = "4.1.0"
+Config.Version = "5.0.0"
 
 --------------------------------------------------
 -- System Settings
@@ -31,16 +31,57 @@ Config.Console = {
 }
 
 --------------------------------------------------
--- Group Numbers
+-- Fixture Types
 --------------------------------------------------
 
-Config.Groups = {
+Config.FixtureTypes = {
 
-    All      = 900,
-    Beam350  = 901,
-    Wash     = 902,
-    Beam260  = 903,
-    BeeEye   = 904
+    {
+        Name = "All",
+        Group = 900,
+        Label = "ALL FIXTURES",
+        Keywords = {}
+    },
+
+    {
+        Name = "Beam350",
+        Group = 901,
+        Label = "350 BEAM",
+        Keywords = {
+            "350",
+            "350 BEAM"
+        }
+    },
+
+    {
+        Name = "Wash",
+        Group = 902,
+        Label = "WASH",
+        Keywords = {
+            "WASH"
+        }
+    },
+
+    {
+        Name = "Beam260",
+        Group = 903,
+        Label = "260 BEAM",
+        Keywords = {
+            "260",
+            "260 BEAM"
+        }
+    },
+
+    {
+        Name = "BeeEye",
+        Group = 904,
+        Label = "B-EYE",
+        Keywords = {
+            "BEE",
+            "BEEEYE",
+            "B-EYE"
+        }
+    }
 
 }
 
@@ -77,7 +118,7 @@ Config.PositionPresets = {
 }
 
 --------------------------------------------------
--- Default Colors
+-- Color Presets
 --------------------------------------------------
 
 Config.ColorPresets = {
@@ -95,34 +136,6 @@ Config.ColorPresets = {
 }
 
 --------------------------------------------------
--- Fixture Keywords
---------------------------------------------------
-
-Config.Keywords = {
-
-    Beam350 = {
-        "350",
-        "350 BEAM"
-    },
-
-    Beam260 = {
-        "260",
-        "260 BEAM"
-    },
-
-    Wash = {
-        "WASH"
-    },
-
-    BeeEye = {
-        "BEE",
-        "BEEEYE",
-        "B-EYE"
-    }
-
-}
-
---------------------------------------------------
 -- Default Effects
 --------------------------------------------------
 
@@ -136,5 +149,8 @@ Config.DefaultEffects = {
 
 }
 
+--------------------------------------------------
+-- Return Module
+--------------------------------------------------
+
 return Config
-  
