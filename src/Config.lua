@@ -280,4 +280,42 @@ Config.Sequences = {
 
 }
 
+--------------------------------------------------
+-- Pages
+--------------------------------------------------
+
+Config.Pages = {
+
+    {
+        Number = 50,
+        Name = "Preset"
+    },
+
+    {
+        Number = 51,
+        Name = "Fader"
+    },
+
+    {
+        Number = 52,
+        Name = "Buttons"
+    },
+
+    {
+        Number = 55,
+        Name = "Effect"
+    },
+
+    {
+        Number = 76,
+        Name = "Lua"
+    },
+
+    {
+        Number = 77,
+        Name = "Command"
+    }
+
+}
+
 return Config
