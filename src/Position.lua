@@ -15,8 +15,13 @@ function Position.Store(number, name)
 
     Logger.Info("Creating Position Preset : " .. name)
 
-    gma.cmd("Store Preset " .. pool .. "." .. number .. " /o")
-    gma.cmd('Label Preset ' .. pool .. "." .. number .. ' "' .. name .. '"')
+    Command.StorePreset(pool, number)
+
+    Command.LabelPreset(
+        pool,
+        number,
+        name
+    )
 
 end
 
@@ -28,6 +33,11 @@ function Position.Build()
 
     Logger.Info("Building Position Presets...")
 
+    if not Config.PositionPresets then
+        Logger.Warn("No Position Presets configured.")
+        return
+    end
+
     for _, preset in ipairs(Config.PositionPresets) do
 
         Position.Store(
@@ -37,8 +47,16 @@ function Position.Build()
 
     end
 
-    Logger.Success("Position Presets Complete")
+    Logger.Success(
+        "Position Presets Complete (" ..
+        #Config.PositionPresets ..
+        " presets)"
+    )
 
 end
+
+--------------------------------------------------
+-- Return Module
+--------------------------------------------------
 
 return Position
