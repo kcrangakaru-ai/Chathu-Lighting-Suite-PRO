@@ -29,18 +29,16 @@ function Utils.Contains(text, keyword)
 end
 
 --------------------------------------------------
--- Match Keyword List
+-- Match Keywords
 --------------------------------------------------
 
 function Utils.MatchKeywords(text, keywords)
 
-    if keywords == nil then
-        return false
-    end
+    text = string.upper(text or "")
 
     for _, keyword in ipairs(keywords) do
 
-        if Utils.Contains(text, keyword) then
+        if string.find(text, string.upper(keyword), 1, true) then
             return true
         end
 
