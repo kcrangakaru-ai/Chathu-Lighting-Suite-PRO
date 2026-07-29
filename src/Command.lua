@@ -281,6 +281,36 @@ function Command.LabelPage(number,name)
 end
 
 --------------------------------------------------
+-- Store Layout
+--------------------------------------------------
+
+function Command.StoreLayout(number)
+
+    Command.Run(
+        "Store Layout " ..
+        number ..
+        " /o"
+    )
+
+end
+
+--------------------------------------------------
+-- Label Layout
+--------------------------------------------------
+
+function Command.LabelLayout(number,name)
+
+    Command.Run(
+        'Label Layout ' ..
+        number ..
+        ' "' ..
+        name ..
+        '"'
+    )
+
+end
+
+--------------------------------------------------
 -- Return Module
 --------------------------------------------------
 
